@@ -7,6 +7,6 @@
   "originalCommit": "",
   "pullRequestUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069/pull/3",
   "submissionTag": "",
-  "testStatus": "not-tested",
+  "testStatus": "pass",
   "notes": "Static site ต้องมี index.html ที่ publish root"
 }
