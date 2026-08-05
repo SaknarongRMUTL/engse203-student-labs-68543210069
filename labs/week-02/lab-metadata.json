@@ -5,7 +5,7 @@
   "sourceOrigin": "migrated-repository",
   "originalRepoUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069",
   "originalCommit": "7f5635aa8db71fe586a6978ffbae3a8a52b34357",
-  "pullRequestUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069/compare/lab/week-02?expand=1",
+  "pullRequestUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069/pull/5",
   "submissionTag": "lab-02-submission-v2",
   "testStatus": "pass",
   "notes": "นำ Vite build output ที่มี index.html เข้า publish/"
