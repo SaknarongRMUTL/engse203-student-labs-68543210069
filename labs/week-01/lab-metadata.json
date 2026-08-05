@@ -1,12 +1,12 @@
 {
   "week": "week-01",
   "title": "Developer Environment & GitHub Repository Setup",
-  "status": "draft",
+  "status": "submitted",
   "sourceOrigin": "course-starter",
-  "originalRepoUrl": "",
+  "originalRepoUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069",
   "originalCommit": "",
-  "pullRequestUrl": "",
-  "submissionTag": "",
-  "testStatus": "not-tested",
-  "notes": "LAB 1 ใช้ evidence report ได้โดยไม่ต้องมี web application"
+  "pullRequestUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069/compare/lab/week-01?expand=1",
+  "submissionTag": "lab-01-submission-v1",
+  "testStatus": "pass",
+  "notes": "รัน hello.js และตรวจ environment แล้ว"
 }
