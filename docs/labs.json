@@ -29,7 +29,7 @@
     "pageUrl": "https://SaknarongRMUTL.github.io/engse203-student-labs-68543210069/labs/week-02/",
     "sourceUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069/tree/lab/week-02/labs/week-02/source",
     "hasPublish": true,
-    "sourceEntries": 8
+    "sourceEntries": 9
   },
   {
     "week": "week-03",
@@ -44,16 +44,8 @@
     "notes": "Static site ต้องมี index.html ที่ publish root",
     "pageUrl": "https://SaknarongRMUTL.github.io/engse203-student-labs-68543210069/labs/week-03/",
     "sourceUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069/tree/lab/week-03/labs/week-03/source",
-<<<<<<< HEAD
     "hasPublish": true,
     "sourceEntries": 10
-=======
-    "hasPublish": false,
-    "sourceEntries": 3
-<<<<<<< HEAD
->>>>>>> lab/week-01
-=======
->>>>>>> lab/week-02
   },
   {
     "week": "week-04",
