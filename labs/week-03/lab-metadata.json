@@ -5,8 +5,8 @@
   "sourceOrigin": "course-starter",
   "originalRepoUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069",
   "originalCommit": "",
-  "pullRequestUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069/pull/3",
-  "submissionTag": "",
-  "testStatus": "not-tested",
+  "pullRequestUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069/compare/lab/week-03?expand=1",
+  "submissionTag": "lab-03-submission-v1",
+  "testStatus": "pass",
   "notes": "Static site ต้องมี index.html ที่ publish root"
 }
