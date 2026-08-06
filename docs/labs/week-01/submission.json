@@ -5,7 +5,7 @@
   "sourceOrigin": "migrated-repository",
   "originalRepoUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069",
   "originalCommit": "30902b17fc03d37d80a39e879ed40f4cf0b65970",
-  "pullRequestUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069/compare/lab/week-01?expand=1",
+  "pullRequestUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069/pull/4",
   "submissionTag": "lab-01-submission-v1",
   "testStatus": "pass",
   "notes": "รัน hello.js และตรวจ environment แล้ว",
