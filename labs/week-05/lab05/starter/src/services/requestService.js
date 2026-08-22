@@ -77,6 +77,7 @@ export async function getRequests(options = {}) {
   // TODO 5B-3: เปลี่ยนบรรทัดข้างบนเป็น return loadNormalRequests(options.onRecovery);
 }
 
+
 function readText(value) {
   return typeof value === 'string' ? value.trim() : '';
 }
@@ -125,11 +126,16 @@ export async function getRequestById(requestId) {
  *   3. ถ้าไม่ ให้ fetchSeedRequests() แล้ว writeStoredRequests() เก็บไว้
  *   4. ถ้า status เป็น 'invalid' ให้เรียก onRecovery?.(ข้อความ) เพื่อให้หน้าจอแจ้งผู้ใช้
  *   5. คืนข้อมูล seed*/
-async function loadNormalRequests(onRecovery) {
+async function loadNormalRequests() {
   const stored = readStoredRequests();
-  return fetchSeedRequests()
-   //throw new Error('TODO 5B-2: loadNormalRequests');
+  if (stored.status === 'valid') return stored.requests;
+
+  const seedRequests = await fetchSeedRequests();
+  writeStoredRequests(seedRequests);
+  // TODO 5B-2b: แจ้งผู้ใช้เมื่อกู้ข้อมูลจากของเสีย (ทำใน CP04b)
+  return seedRequests;
 }
+
 
 /**
  * TODO 5B-4 · เพิ่มคำร้องใหม่
@@ -156,6 +162,7 @@ export async function addRequest(requestInput) {
   writeStoredRequests([...requests, newRequest]);
   return structuredClone(newRequest);
 }
+
 
 
 /**
