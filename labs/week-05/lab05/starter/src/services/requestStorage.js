@@ -58,7 +58,14 @@ export function readStoredRequests() {
 
   try {
     const envelope = JSON.parse(rawValue);
-    // TODO 5B-A2: ตรวจ schemaVersion และ validateRequests ให้ครบใน CP04b
+    if (
+      !envelope
+      || envelope.schemaVersion !== SCHEMA_VERSION
+      || !validateRequests(envelope.requests)
+    ) {
+      return { status: 'invalid', reason: 'รูปแบบหรือเวอร์ชันข้อมูลไม่ถูกต้อง' };
+    }
+
     return { status: 'valid', requests: structuredClone(envelope.requests) };
   } catch {
     return { status: 'invalid', reason: 'ข้อมูลที่บันทึกไว้ไม่ใช่ JSON ที่อ่านได้' };
@@ -77,12 +84,12 @@ export function writeStoredRequests(requests) {
   if (!validateRequests(requests)) {
     throw new Error('ไม่สามารถบันทึกข้อมูลคำร้องที่ไม่ตรง schema ได้');
   }
+
   localStorage.setItem(STORAGE_KEY, JSON.stringify({
     schemaVersion: SCHEMA_VERSION,
     updatedAt: new Date().toISOString(),
     requests: structuredClone(requests),
   }));
-
 }
 
 /**
