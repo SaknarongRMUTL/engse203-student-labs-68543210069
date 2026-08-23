@@ -24,6 +24,22 @@ const summaries = [];
 
 for (const week of labs) {
   const labRoot = path.join(ROOT, "labs", week);
+  
+  // === ส่วนที่เพิ่มใหม่: ตรวจหาชื่อโฟลเดอร์อัตโนมัติ ===
+  let srcFolder = "source"; // ค่าเริ่มต้น
+  const weekNum = week.split("-")[1]; // ตัดคำว่า week- ออก เหลือแค่ตัวเลข (เช่น "05")
+  const altFolder = `lab${weekNum}`; // สร้างชื่อโฟลเดอร์ตามสัปดาห์ เช่น "lab05"
+
+  // เช็คว่าถ้าไม่มีโฟลเดอร์ source ให้ใช้ชื่อ lab05 หรือ labXX แทน
+  if (!(await exists(path.join(labRoot, srcFolder)))) {
+    if (await exists(path.join(labRoot, altFolder))) {
+      srcFolder = altFolder;
+    } else if (await exists(path.join(labRoot, "lab05"))) {
+      srcFolder = "lab05"; // สำรองไว้ในกรณีที่ชื่อไม่ตรงกับสัปดาห์
+    }
+  }
+  // =======================================
+
   const publishRoot = path.join(labRoot, "publish");
   const target = path.join(docsRoot, "labs", week);
   const metadata = await readJson(path.join(labRoot, "lab-metadata.json"));
@@ -33,7 +49,8 @@ for (const week of labs) {
   if (hasPublish) {
     await fs.cp(publishRoot, target, { recursive: true });
   } else {
-    const sourceUrl = `${repoUrl}/tree/lab/${week}/labs/${week}/source`;
+    // เปลี่ยนคำว่า source เป็น ${srcFolder}
+    const sourceUrl = `${repoUrl}/tree/lab/${week}/labs/${week}/${srcFolder}`;
     const evidenceUrl = `${repoUrl}/tree/lab/${week}/labs/${week}/evidence`;
     const originalUrl = validHttpUrl(metadata.originalRepoUrl);
     const report = `<!doctype html>
@@ -48,10 +65,11 @@ for (const week of labs) {
     await fs.writeFile(path.join(target, "index.html"), report, "utf8");
   }
 
-  const sourceUrl = `${repoUrl}/tree/lab/${week}/labs/${week}/source`;
+  // เปลี่ยนคำว่า source เป็น ${srcFolder} อีก 2 จุด
+  const sourceUrl = `${repoUrl}/tree/lab/${week}/labs/${week}/${srcFolder}`;
   const prUrl = validHttpUrl(metadata.pullRequestUrl);
   const pageUrl = `${pagesBase}/labs/${week}/`;
-  const sourceCount = (await meaningfulEntries(path.join(labRoot, "source"))).length;
+  const sourceCount = (await meaningfulEntries(path.join(labRoot, srcFolder))).length;
   const summary = { ...metadata, pageUrl, sourceUrl, hasPublish, sourceEntries: sourceCount };
   summaries.push(summary);
   await fs.writeFile(path.join(target, "submission.json"), `${JSON.stringify(summary, null, 2)}\n`, "utf8");
