@@ -25,7 +25,7 @@ function RequestDetailPage() {
       setLoadState('error');
     });
     return () => { ignore = true; };
-  }, []);
+  }, [requestId]);
 
   return (
     <section data-testid="page-request-detail">
