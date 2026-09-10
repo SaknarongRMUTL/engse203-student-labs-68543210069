@@ -6,14 +6,8 @@ import { errorHandler, notFound } from "./middleware/errorHandler.js";
 export function createApp() {
   const app = express();
 
-  /**
-   * TODO W06-A1 (CP03) · ติดตั้ง middleware — ต้องมาก่อน route เสมอ
-   *   app.use(logger)            ← บันทึกทุกคำขอ
-   *   app.use(express.json())    ← ทำให้ req.body อ่านได้
-   *
-   * ⚠ ถ้าลืม express.json() แล้ว req.body จะเป็น undefined ตลอด
-   *   POST จะพังโดยไม่มี error บอกสาเหตุ — กับดักอันดับ 1 ของมือใหม่
-   */
+  app.use(logger);
+  app.use(express.json());
 
   app.get("/", (req, res) => {
     res.json({ message: "Campus Service API is running", version: "1.0.0" });
