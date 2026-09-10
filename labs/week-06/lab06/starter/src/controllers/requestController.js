@@ -5,21 +5,12 @@ import * as service from '../services/requestService.js';
  * แต่ไม่จัดการข้อมูลเอง — ให้ service ทำ
  */
 
-/**
- * TODO W06-C1 (CP02) · GET /api/requests
- * - อ่าน req.query.status (ถ้ามี) ส่งต่อให้ service.findAll()
- * - ตอบ 200 พร้อมรายการ
- */
+
 export function listRequests(req, res) {
   const { status } = req.query;
   res.status(200).json(service.findAll({ status }));
 }
 
-/**
- * TODO W06-C2 (CP02) · GET /api/requests/:id
- * - อ่านรหัสจาก req.params.id
- * - ไม่พบ → 404 พร้อมข้อความ · พบ → 200 พร้อมข้อมูล
- */
 export function getRequest(req, res) {
   const found = service.findById(req.params.id);
   if (!found) {
@@ -48,10 +39,11 @@ export function updateRequestStatus(req, res) {
   throw new Error('TODO W06-C4: updateRequestStatus');
 }
 
-/**
- * TODO W06-C5 (CP05) · DELETE /api/requests/:id
- * - ไม่พบ → 404 · ลบสำเร็จ → 204 (ไม่มีข้อมูลส่งกลับ ใช้ res.status(204).end())
- */
+
 export function deleteRequest(req, res) {
-  throw new Error('TODO W06-C5: deleteRequest');
+  const removed = service.remove(req.params.id);
+  if (!removed) {
+    return res.status(404).json({ error: `ไม่พบคำร้องรหัส ${req.params.id}` });
+  }
+  res.status(204).end();
 }

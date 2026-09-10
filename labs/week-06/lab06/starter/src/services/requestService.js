@@ -70,5 +70,7 @@ export function updateStatus(id, status) {
  * - ใช้ .filter() สร้าง array ใหม่ อย่าแก้ array เดิม
  */
 export function remove(id) {
-  throw new Error('TODO W06-S5: remove');
+  const before = requests.length;
+  requests = requests.filter((r) => r.id !== id);
+  return requests.length < before;
 }
