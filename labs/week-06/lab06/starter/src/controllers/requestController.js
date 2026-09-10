@@ -21,7 +21,11 @@ export function listRequests(req, res) {
  * - ไม่พบ → 404 พร้อมข้อความ · พบ → 200 พร้อมข้อมูล
  */
 export function getRequest(req, res) {
-  throw new Error('TODO W06-C2: getRequest');
+  const found = service.findById(req.params.id);
+  if (!found) {
+    return res.status(404).json({ error: `ไม่พบคำร้องรหัส ${req.params.id}` });
+  }
+  res.status(200).json(found);
 }
 
 /**
