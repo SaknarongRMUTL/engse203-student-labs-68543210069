@@ -11,7 +11,8 @@ import * as service from '../services/requestService.js';
  * - ตอบ 200 พร้อมรายการ
  */
 export function listRequests(req, res) {
-  throw new Error('TODO W06-C1: listRequests');
+  const { status } = req.query;
+  res.status(200).json(service.findAll({ status }));
 }
 
 /**

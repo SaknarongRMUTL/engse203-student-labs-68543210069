@@ -21,10 +21,10 @@ export function findAll({ status } = {}) {
   throw new Error('TODO W06-S1: findAll');
 }
 
-/**
- * TODO W06-S2 (CP02) · คืนคำร้องใบเดียวตามรหัส
- * - ถ้าไม่พบให้คืน null (ห้าม throw — controller จะเป็นคนตัดสินว่าตอบ 404)
- */
+export function findAll({ status } = {}) {
+  if (!status) return structuredClone(requests);
+  return structuredClone(requests.filter((r) => r.status === status));
+}
 export function findById(id) {
   throw new Error('TODO W06-S2: findById');
 }
