@@ -19,5 +19,7 @@ const router = Router();
 router.get('/', controller.listRequests);
 router.get('/:id', controller.getRequest);
 router.post('/', validateRequest, controller.createRequest);
+router.put('/:id', controller.updateRequestStatus);
 router.delete('/:id', controller.deleteRequest);
+
 export default router;

@@ -19,24 +19,23 @@ export function getRequest(req, res) {
   res.status(200).json(found);
 }
 
-/**
- * TODO W06-C3 (CP04) · POST /api/requests
- * - validateRequest middleware ตรวจ body มาให้แล้ว ตรงนี้เชื่อ req.body ได้เลย
- * - เรียก service.create() แล้วตอบ 201 พร้อมคำร้องที่สร้าง
- * ⚠ POST สำเร็จตอบ 201 ไม่ใช่ 200
- */
 export function createRequest(req, res) {
   const created = service.create(req.body);
   res.status(201).json(created);
 }
 
-/**
- * TODO W06-C4 (⭐ Challenge) · PUT /api/requests/:id
- * - status ที่รับได้: 'pending' | 'in-progress' | 'completed'
- * - status ไม่ถูกต้อง → 400 · ไม่พบคำร้อง → 404 · สำเร็จ → 200
- */
 export function updateRequestStatus(req, res) {
-  throw new Error('TODO W06-C4: updateRequestStatus');
+  const { id } = req.params;
+  const { status } = req.body;
+  if (!['pending', 'in-progress', 'completed'].includes(status)) {
+    return res.status(400).json({ error: 'สถานะไม่ถูกต้อง' });
+  }
+
+  const updated = service.updateStatus(id, status);
+  if (!updated) {
+    return res.status(404).json({ error: `ไม่พบคำร้องรหัส ${id}` });
+  }
+  res.status(200).json(updated);
 }
 
 

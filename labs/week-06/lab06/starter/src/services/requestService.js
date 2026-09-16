@@ -22,14 +22,11 @@ export async function loadSeed() {
   return requests;
 }
 
-/**
- * TODO W06-S1 (CP02) · คืนรายการคำร้องทั้งหมด
- * - คืนสำเนาด้วย structuredClone() เพื่อไม่ให้ข้างนอกแก้ข้อมูลต้นฉบับ
- * TODO W06-S1b (⭐ Challenge) · ถ้ามี options.status ให้กรองเฉพาะสถานะนั้น
- */
+
 export function findAll({ status } = {}) {
   if (!status) return structuredClone(requests);
   return structuredClone(requests.filter((r) => r.status === status));
+
 }
 export function findById(id) {
   const found = requests.find((r) => r.id === id);
@@ -67,12 +64,13 @@ export function create(input) {
   return structuredClone(newRequest);
 }
 
-/**
- * TODO W06-S4 (⭐ Challenge) · เปลี่ยนสถานะคำร้อง
- * - ไม่พบคืน null · พบแล้วเปลี่ยน status และคืนสำเนา
- */
+
 export function updateStatus(id, status) {
-  throw new Error('TODO W06-S4: updateStatus');
+  const request = requests.find((r) => r.id === id);
+  if (!request) return null;
+  request.status = status;
+  persist();
+  return structuredClone(request);
 }
 
 /**
