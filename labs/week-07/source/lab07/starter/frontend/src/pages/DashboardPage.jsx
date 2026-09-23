@@ -62,8 +62,12 @@ function DashboardPage() {
       setRequests(nextRequests);
       setNotice(`ลบคำร้อง ${requestId} แล้ว`);
     } catch (error) {
-      setNotice(error instanceof Error ? error.message : 'ลบคำร้องไม่สำเร็จ');
-    }
+  if (error instanceof ApiError && error.status === 0) {
+    setError('ติดต่อเซิร์ฟเวอร์ไม่ได้ — ตรวจว่าเปิด API ที่พอร์ต 3001 แล้วหรือยัง');
+  } else {
+    setError(error.message);
+  }
+}
   }
 
   async function handleReset() {
@@ -73,8 +77,12 @@ function DashboardPage() {
       setStatusFilter('all');
       setNotice('คืนข้อมูลตัวอย่างเริ่มต้นแล้ว');
     } catch (error) {
-      setNotice(error instanceof Error ? error.message : 'คืนข้อมูลไม่สำเร็จ');
-    }
+  if (error instanceof ApiError && error.status === 0) {
+    setError('ติดต่อเซิร์ฟเวอร์ไม่ได้ — ตรวจว่าเปิด API ที่พอร์ต 3001 แล้วหรือยัง');
+  } else {
+    setError(error.message);
+  }
+}
   }
 
   return (
