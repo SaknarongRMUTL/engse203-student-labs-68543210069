@@ -125,6 +125,7 @@ const qcount = (qs.match(/select/gi) ?? []).length;
 rec('CP22', 'takehome', 'queries.sql มีคำสั่ง SELECT อย่างน้อย 8 ข้อ', qcount >= 8, `พบ ${qcount}`);
 rec('CP22', 'takehome', 'queries.sql มีการใช้ JOIN', has(qs, 'join'));
 rec('CP22', 'takehome', 'queries.sql มีการใช้ WHERE และ ORDER BY', has(qs, 'where') && has(qs, 'order\\s+by'));
+console.log(qs.match(/select/gi)); 
 
 // ══ ⭐ Challenge ══
 rec('CHAL', 'challenge', '⭐ ใช้ GROUP BY สรุปข้อมูล', has(qs, 'group\\s+by'));

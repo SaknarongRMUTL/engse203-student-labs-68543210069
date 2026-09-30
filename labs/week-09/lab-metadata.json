@@ -1,12 +1,12 @@
 {
   "week": "week-09",
-  "title": "(Relational Databases\nand SQL)",
-  "status": "draft",
-  "sourceOrigin": "course-starter",
-  "originalRepoUrl": "",
+  "title": "(Relational Databases and SQL)",
+  "status": "submitted",
+  "sourceOrigin": "migrated-repository",
+  "originalRepoUrl": "https://github.com/SaknarongRMUTL/engse203-student-labs-68543210069",
   "originalCommit": "",
   "pullRequestUrl": "",
-  "submissionTag": "",
-  "testStatus": "not-tested",
+  "submissionTag": "lab-09-submission-v1",
+  "testStatus": "pass",
   "notes": ""
 }
