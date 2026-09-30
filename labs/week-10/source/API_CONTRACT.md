@@ -24,6 +24,31 @@
 **ค่าที่ยอมรับของ `requestType`** — `แจ้งซ่อม` · `บริการบัญชีผู้ใช้` · `ขอใช้อุปกรณ์` · `อื่น ๆ`
 
 ---
+## รายละเอียดตารางจากไฟล์DATA_MODEL.mdในweek09
+
+### users
+
+| ข้อมูล       | ชนิด    | ข้อกำหนด                  | เหตุผลที่เลือก                         |
+| ------------ | ------- | ------------------------- | -------------------------------------- |
+| `id`         | INTEGER | PRIMARY KEY AUTOINCREMENT | ใช้เป็นรหัสของผู้ใช้ และให้เลขเพิ่มเอง |
+| `name`       | TEXT    | NOT NULL                  | ต้องมีชื่อผู้ใช้                       |
+| `department` | TEXT    | NOT NULL                  | ต้องมีภาควิชา                          |
+| `email`      | TEXT    | NOT NULL UNIQUE           | ต้องมีอีเมลและไม่ให้ซ้ำกัน             |
+
+### requests
+
+| ข้อมูล         | ชนิด    | ข้อกำหนด                 | เหตุผลที่เลือก                                  |
+| -------------- | ------- | ------------------------ | ----------------------------------------------- |
+| `id`           | TEXT    | PRIMARY KEY              | ใช้รหัสคำร้อง เช่น `REQ-001`                    |
+| `requester_id` | INTEGER | NOT NULL, FOREIGN KEY    | ใช้เชื่อมกับ `users.id`                         |
+| `request_type` | TEXT    | NOT NULL          | จำกัดประเภทคำร้อง                               |
+| `location`     | TEXT    | NOT NULL                 | ต้องมีสถานที่                                   |
+| `details`      | TEXT    | NOT NULL                 | ต้องมีรายละเอียดของคำร้อง                       |
+| `priority`     | TEXT    | NOT NULL, DEFAULT| กำหนดเป็น `normal` หรือ `urgent`                |
+| `status`       | TEXT    | NOT NULL, DEFAULT | กำหนดเป็น `pending`, `in-progress`, `completed` |
+| `created_at`   | TEXT    | NOT NULL, DEFAULT        | เก็บเวลาที่สร้างคำร้อง                          |
+
+---
 
 ## Endpoints
 
