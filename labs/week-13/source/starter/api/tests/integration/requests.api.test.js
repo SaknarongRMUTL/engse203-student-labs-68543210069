@@ -2,7 +2,7 @@ import { describe, test, expect, beforeEach } from 'vitest';
 import request from 'supertest';
 import { createApp } from '../../src/app.js';
 import { loadSeed } from '../../src/services/requestService.js';
-
+import { loginAsStaff } from '../helpers/auth.js';
 /**
  * Integration test — ยิง HTTP จริงผ่านทุกชั้น: route → controller → service → SQLite
  * beforeEach เรียก loadSeed() ใหม่ทุกข้อ → ได้ฐานข้อมูลในหน่วยความจำชุดใหม่ (5 รายการ)

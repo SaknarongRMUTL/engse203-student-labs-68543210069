@@ -26,15 +26,11 @@ describe('POST /api/auth/login', () => {
 });
 
 describe('สิทธิ์ของ PUT / DELETE', () => {
-  test('ไม่มี token → 401', async () => {
-    const r = await request(app).put('/api/requests/REQ-001').send({ status: 'completed' });
-    expect(r.status).toBe(401);
+  test('รหัสผ่านผิด กับ อีเมลที่ไม่มี → 401 ข้อความเดียวกัน', async () => {
+    const wrong = await request(app).post('/api/auth/login').send({ ...STAFF, password: 'nope1234' });
+    const unknown = await request(app).post('/api/auth/login').send({ email: 'ghost@rmutl.ac.th', password: 'nope1234' });
+    expect(wrong.status).toBe(401);
+    expect(unknown.status).toBe(401);
+    expect(wrong.body.error).toBe(unknown.body.error);
   });
-
-  // 🏫 TODO W13-AUTH (CP51): เพิ่ม
-  //   - token ที่ไม่ใช่เจ้าหน้าที่ → 403      ใช้ tokenFor('requester')
-  //   - token ปลอม (secret อื่น) → 401        ใช้ tokenFor('staff', 'not-the-real-secret')
-  //   - เจ้าหน้าที่ → PUT 200 และ DELETE 204  ใช้ await loginAsStaff(app)
-  //   ⚠ หลังผูก authenticate แล้ว test ของ PUT/DELETE ใน requests.api.test.js จะพัง (401)
-  //     — นั่นคือสัญญาณว่า requirement เปลี่ยน: แก้ test ให้เข้าสู่ระบบก่อน
 });
