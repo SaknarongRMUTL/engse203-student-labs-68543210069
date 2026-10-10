@@ -24,7 +24,14 @@ export function createApp() {
   // ③ อ่าน JSON body
   // 🏫 TODO W13-VALID (CP48): จำกัดขนาด body ไม่เกิน 10kb → express.json({ limit: '10kb' })
   app.use(express.json({ limit: '10kb' }));   // Week 13 — body ใหญ่เกินนี้ได้ 413
-
+  app.use((req, res, next) => {
+    res.set({
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+      'Referrer-Policy': 'no-referrer'
+    });
+    next();
+  });
   // ④ route ของ API — ทุกอย่างอยู่ใต้ /api
   app.get('/api', (req, res) => {
     res.json({ message: 'Campus Service API is running', version: '3.0.0' });
