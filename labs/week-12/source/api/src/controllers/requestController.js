@@ -1,5 +1,5 @@
-import * as service from '../services/requestService.js';
-import { isValidStatus } from '../validators/requestValidator.js';
+import * as service from "../services/requestService.js";
+import { isValidStatus } from "../validators/requestValidator.js";
 
 /** controller รู้จัก req/res และตัดสิน status code — แต่ไม่จัดการข้อมูลเอง */
 
@@ -24,13 +24,15 @@ export function createRequest(req, res) {
 export function updateRequestStatus(req, res) {
   const { status } = req.body ?? {};
   if (!isValidStatus(status)) {
-    return res.status(400).json({ error: 'สถานะต้องเป็น pending, in-progress หรือ completed' });
+    return res
+      .status(400)
+      .json({ error: "สถานะต้องเป็น pending, in-progress หรือ completed" });
   }
   const updated = service.updateStatus(req.params.id, status);
-  console.log(`[status] ${updated.id} → ${updated.status}`);   // บันทึกการเปลี่ยนสถานะ
   if (!updated) {
     return res.status(404).json({ error: `ไม่พบคำร้องรหัส ${req.params.id}` });
   }
+  console.log(`[status] ${updated.id} → ${updated.status}`);
   res.status(200).json(updated);
 }
 
